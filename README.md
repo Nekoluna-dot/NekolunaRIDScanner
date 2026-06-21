@@ -12,11 +12,10 @@
 ---
 <img width="920" height="690" alt="P1022754" src="https://github.com/user-attachments/assets/1bc9d1e1-2146-4f6f-b328-96ef7805fc2a" />
 <img width="920" height="690" alt="P1022758" src="https://github.com/user-attachments/assets/56333ab5-23c6-4f51-b56d-6de52f2c1c81" />
-↑ 本项目使用的是官方版ESP32 C5开发板 建议选择带天线的版本
 <img width="360" height="800" alt="Screenshot_2026-06-21-17-42-21-480_com ridviewer(1)" src="https://github.com/user-attachments/assets/3424ad54-00ea-4198-8f18-746dce03e6f0" />
 <img width="360" height="800" alt="Screenshot_2026-06-21-17-42-18-560_com ridviewer(1)" src="https://github.com/user-attachments/assets/aa22b853-ada6-4a00-a68e-7bbdcd7a91be" />
 
-↑UI展示
+↑本项目使用的是官方版ESP32 C5开发板 建议选择带天线的版本
 ---
 ## 目录
 
