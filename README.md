@@ -10,7 +10,11 @@
 > ESP32-C5 无人机远程识别（Remote ID）扫描器 + Android 查看器(特定DPI，支持安卓手表!)。支持 ASTM F3411-22a、GB 42590-2023、GB 46750-2025 三种协议的解码与显示，配套 Android 端提供实时显示、地图追踪与异常告警。
 
 ---
-
+<img width="1840" height="1380" alt="P1022754" src="https://github.com/user-attachments/assets/1bc9d1e1-2146-4f6f-b328-96ef7805fc2a" />
+<img width="1840" height="1380" alt="P1022758" src="https://github.com/user-attachments/assets/56333ab5-23c6-4f51-b56d-6de52f2c1c81" />
+↑ 本项目使用的是官方版ESP32 C5开发板 建议选择带天线的版本
+<img width="720" height="1600" alt="Screenshot_2026-06-21-17-42-21-480_com ridviewer(1)" src="https://github.com/user-attachments/assets/3424ad54-00ea-4198-8f18-746dce03e6f0" />
+↑UI展示
 ## 目录
 
 - [主要特性](#主要特性)
