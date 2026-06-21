@@ -7,7 +7,7 @@
 [![Platform](https://img.shields.io/badge/platform-ESP32--C5+Android-red)](#)
 
 > **NekolunaRIDScanner：ねこるなは空を見守っている。**  
-> ESP32-C5 无人机远程识别（Remote ID）扫描器 + Android 查看器。支持 ASTM F3411-22a、GB 42590-2023、GB 46750-2025 三种协议的解码与显示，配套 Android 端提供实时显示、地图追踪与异常告警。
+> ESP32-C5 无人机远程识别（Remote ID）扫描器 + Android 查看器(特定DPI，支持安卓手表!)。支持 ASTM F3411-22a、GB 42590-2023、GB 46750-2025 三种协议的解码与显示，配套 Android 端提供实时显示、地图追踪与异常告警。
 
 ---
 
@@ -74,12 +74,29 @@ idf.py build
 idf.py -p COM7 flash
 ```
 
+或用 esptool 直接烧录：
+```bash
+pip install esptool
+esptool.py --chip esp32c5 -p COM7 -b 115200 write_flash \
+  0x2000 bootloader.bin \
+  0x8000 partition-table.bin \
+  0x10000 remoteid_scanner.bin
+```
+
 ### 烧录模拟器
 ```bash
 cd esp32-crid-sim-OTA
 idf.py set-target esp32c3
 idf.py build
 idf.py -p COM6 flash
+```
+
+或用 esptool：
+```bash
+esptool.py --chip esp32c3 -p COM6 -b 115200 write_flash \
+  0x0 bootloader.bin \
+  0x8000 partition-table.bin \
+  0x10000 esp32-crid-sim.bin
 ```
 
 ### Android 端
