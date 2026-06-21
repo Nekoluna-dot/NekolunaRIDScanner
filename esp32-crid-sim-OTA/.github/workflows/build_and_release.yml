@@ -1,0 +1,62 @@
+name: ESP32 Build and Release
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*' # 当推送 v1.0.0 这样的标签时触发发布
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install setuptools wheel
+        # 如果项目需要特定的 Python 包，在这里安装
+
+    - name: ESP-IDF Build
+      uses: espressif/esp-idf-ci-action@v1
+      with:
+        esp_idf_version: v6.0.1 # 指定你使用的 ESP-IDF 版本，如 v5.2.1, v5.3 等
+        target: esp32s3,esp32c3,esp32c5           # 目标芯片：esp32, esp32s2, esp32s3, esp32c3 等
+        path: '.'               # 项目根目录
+        command: idf.py build   # 编译命令
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: esp32-firmware
+        path: |
+          build/*.bin
+          build/*.elf
+          build/bootloader/*.bin
+          build/partition_table/*.bin
+
+    # --- 以下为自动发布 Release 的部分 ---
+    - name: Create Release
+      if: startsWith(github.ref, 'refs/tags/v') # 只有推送 tag 时才执行
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          build/*.bin
+          build/bootloader/*.bin
+          build/partition_table/*.bin
+        tag_name: ${{ github.ref_name }}
+        release_name: Release ${{ github.ref_name }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
